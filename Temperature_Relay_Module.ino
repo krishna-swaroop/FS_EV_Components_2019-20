@@ -1,3 +1,12 @@
+/* The following code was written on 23-05-2019 for the design of Temperature Relay Module to be used in the shutdown circuit. 
+   We used an analog multiplexer to connect the temperature sensors to the microcontroller. The multiplexed signal was stabilised using
+   an op-amp with negative feedback. At the time of writing, the team is still in design stage. So an Arduino has been used to prototype 
+   the circuits. We plan to use a specialised microcontroller for the same later on.
+*/
+// Inspired Karters FS, BITS Pilani
+// Designed by D. Krishna Swaroop, 2017A3PS0315P
+
+
 // Setting Multiplexer Pins
 int MuxA0=9;     // A0 pin of Mux
 int MuxA1=8;     // A1 pin of Mux
@@ -15,7 +24,7 @@ float Rt=10000;    // Resistor t [ohm]
 float R0=10000;    // value of rct in T0 [ohm]
 float T0=298.15;   // use T0 in Kelvin [K]
 
-// refer to the datasheet to get this data.
+// refer to the datasheet of the temperature sensor to get this data.
 float T1=273.15;      // [K] in datasheet 0º C
 float T2=373.15;      // [K] in datasheet 100° C
 float RT1=35563;   // [ohms]  resistence in T1
