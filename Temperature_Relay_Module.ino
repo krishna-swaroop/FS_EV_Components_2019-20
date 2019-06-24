@@ -56,32 +56,16 @@ void loop() {
 
 
 float ValSensor[7];
+int A0BitVal[]={0,1,0,1,0,1,0,1};
+int A1BitVal[]={0,0,1,1,0,0,1,1};
+int A2BitVal[]={0,0,0,0,1,1,1,1};
+
 for(int i=0; i<=7; i++)
 {
-  if(i%2==0 && i!=0)                       //Sets value of A0 pin inorder to simulate the counting from 0-7
-  {
-    digitalWrite(MuxA0,HIGH);
-  }
-  else
-  {
-    digitalWrite(MuxA0,LOW);
-  }
-  if(i==3 || i==4 || i==6 || i==7)         //Sets value of A1 pin inorder to simulate counting from 0-7
-  {
-    digitalWrite(MuxA1,HIGH);
-  }
-  else
-  {
-    digitalWrite(MuxA1,LOW);
-  }
-  if(i>3)                                  //Sets value of A2 pin inorder to simulate counting from 0-7
-  {
-    digitalWrite(MuxA2,HIGH);
-  }
-  else
-  {
-    digitalWrite(MuxA2,LOW);
-  }
+  digitalWrite(MuxA0,A0BitVal[i]);                                   // Setting values of pins from pre-determined pattern stored in an array
+  digitalWrite(MuxA1,A1BitVal[i]);                                   // This snippet sets the digits of sensor number expressed in binary
+  digitalWrite(MuxA2,A2BitVal[i]);
+  
   Vout=Vin*((float)(analogRead(MuxOut))/1024.0);                     // Conversion of Data from NTC Thermistor to Temperatures Based on values from datasheet
   Rout=(Rt*Vout/(Vin-Vout));
 
@@ -101,30 +85,11 @@ for(int i=0; i<=7; i++)
     if(ValSensor[i]>55)                                                // Comparing received value with threshold value and furthering the algorithm
     {
       delay(1000);
-      if(i%2==0 && i!=0)                       //Sets value of A0 pin inorder to simulate the counting from 0-7
-      {
-        digitalWrite(MuxA0,HIGH);
-      }
-      else
-      {
-        digitalWrite(MuxA0,LOW);
-      }
-      if(i==3 || i==4 || i==6 || i==7)         //Sets value of A1 pin inorder to simulate counting from 0-7
-      {
-        digitalWrite(MuxA1,HIGH);
-      }
-      else
-      {
-        digitalWrite(MuxA1,LOW);
-      }
-      if(i>3)                                  //Sets value of A2 pin inorder to simulate counting from 0-7
-      {
-        digitalWrite(MuxA2,HIGH);
-      }
-      else
-      {
-          digitalWrite(MuxA2,LOW);
-      }
+      digitalWrite(MuxA0,A0BitVal[i]);                                   // Setting values of pins from pre-determined pattern stored in an array
+      digitalWrite(MuxA1,A1BitVal[i]);                                   // This snippet sets the digits of sensor number expressed in binary
+      digitalWrite(MuxA2,A2BitVal[i]);
+      
+       
       Vout=Vin*((float)(analogRead(MuxOut))/1024.0);                     // Conversion of Data from NTC Thermistor to Temperatures Based on values from datasheet
       Rout=(Rt*Vout/(Vin-Vout));
 
